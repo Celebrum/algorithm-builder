@@ -1,26 +1,4 @@
-# Custom Math Library
-
-A custom JavaScript mathematics library.
-
-## Usage
-
-```javascript
-// Node.js
-const mathLib = require('./mathLib.js');
-
-// Browser
-<script src="mathLib.js"></script>
-```
-
-## Documentation
-
-Add your mathematical functions documentation here.
-
-## Version
-
-1.0.0
-
-# Algorithm Builder Installation Guide
+# Algorithm Builder
 
 ## Prerequisites
 
