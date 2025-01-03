@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:1.25.3-alpine
+    container_name: charming_noether
+    ports:
+      - "32779:80"
+    networks:
+      - algorithm_builder
+    restart: unless-stopped
+
+  jupyter:
+    image: weygu/nebulagraph-jupyter:v0
+    container_name: nebulagraph_jupyter
+    ports:
+      - "28888:8888"
+    networks:
+      - algorithm_builder
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8888"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  ai_server:
+    image: codeproject/ai-server:latest
+    container_name: ai_server
+    ports:
+      - "32168:80"
+      - "5000:5000"
+    networks:
+      - algorithm_builder
+    restart: unless-stopped
+
+networks:
+  algorithm_builder:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.23.0.0/16
+          gateway: 172.23.0.1
